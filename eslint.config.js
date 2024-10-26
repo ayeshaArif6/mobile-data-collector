@@ -3,7 +3,7 @@ import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 import globals from 'globals';
 
 const { configs: eslintRecommended } = pkg;
-
+//////
 export default [
     {
         files: ['**/*.{js,jsx}'],
