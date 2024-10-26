@@ -1,5 +1,6 @@
 import pkg from '@eslint/js';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+import globals from 'globals';
 
 const { configs: eslintRecommended } = pkg;
 
@@ -15,14 +16,13 @@ export default [
                 },
             },
             globals: {
-                window: 'readonly',
-                document: 'readonly',
-                console: 'readonly',
-                // Add other necessary browser globals here, avoiding problematic entries
+                ...globals.browser,
             },
         },
         plugins: {
             react: reactRecommended,
+            'react-hooks': {}, // Add react-hooks plugin
+            'jsx-a11y': {}, // Add jsx-a11y plugin
         },
         ...eslintRecommended.recommended,
         ...reactRecommended,
@@ -35,6 +35,9 @@ export default [
             ],
             'react/react-in-jsx-scope': 'off',
             'react/jsx-uses-vars': 'error',
+            'react-hooks/rules-of-hooks': 'error', // Add hooks rules
+            'react-hooks/exhaustive-deps': 'warn',
+            'jsx-a11y/anchor-is-valid': 'warn', // Add accessibility rule
         },
     },
 ];
