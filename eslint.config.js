@@ -1,6 +1,5 @@
 import pkg from '@eslint/js';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
-import globals from 'globals';
 
 const { configs: eslintRecommended } = pkg;
 
@@ -12,15 +11,18 @@ export default [
             sourceType: 'module',
             parserOptions: {
                 ecmaFeatures: {
-                    jsx: true, // Ensure JSX is enabled
+                    jsx: true,
                 },
             },
             globals: {
-                ...globals.browser, // Access `browser` from the default import
+                window: 'readonly',
+                document: 'readonly',
+                console: 'readonly',
+                // Add other necessary browser globals here, avoiding problematic entries
             },
         },
         plugins: {
-            react: reactRecommended, // Add React plugin to recognize JSX
+            react: reactRecommended,
         },
         ...eslintRecommended.recommended,
         ...reactRecommended,
@@ -28,11 +30,11 @@ export default [
             'no-unused-vars': [
                 'warn',
                 {
-                    varsIgnorePattern: 'React', // Ignore React import in React 17+
+                    varsIgnorePattern: 'React',
                 },
             ],
-            'react/react-in-jsx-scope': 'off', // Disable the need for React to be in scope
-            'react/jsx-uses-vars': 'error', // Ensure variables used in JSX are marked as used
+            'react/react-in-jsx-scope': 'off',
+            'react/jsx-uses-vars': 'error',
         },
     },
 ];
