@@ -1,5 +1,7 @@
 import pkg from '@eslint/js';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 const { configs: eslintRecommended } = pkg;
 
@@ -25,13 +27,12 @@ export default [
                 clearInterval: 'readonly',
                 localStorage: 'readonly',
                 sessionStorage: 'readonly',
-                // Add other specific globals as needed
             },
         },
         plugins: {
             react: reactRecommended,
-            'react-hooks': {}, // Add react-hooks plugin
-            'jsx-a11y': {}, // Add jsx-a11y plugin
+            'react-hooks': reactHooks.configs.recommended, // Add react-hooks plugin config
+            'jsx-a11y': jsxA11y.configs.recommended, // Add jsx-a11y plugin config
         },
         ...eslintRecommended.recommended,
         ...reactRecommended,
