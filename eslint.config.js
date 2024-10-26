@@ -1,6 +1,6 @@
 import pkg from '@eslint/js';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
-import { browser } from 'globals';
+import globals from 'globals';
 
 const { configs: eslintRecommended } = pkg;
 
@@ -16,7 +16,7 @@ export default [
                 },
             },
             globals: {
-                ...browser, // Spread browser globals, ensuring no whitespace issues
+                ...globals.browser, // Access `browser` from the default import
             },
         },
         plugins: {
